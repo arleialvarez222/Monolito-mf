@@ -1,10 +1,11 @@
+/* eslint-disable no-prototype-builtins */
 
-import { Button, Grid, TextField } from "@mui/material"
+import { Button, FormHelperText, Grid, TextField } from "@mui/material"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router"
+import { useNavigate } from "react-router-dom"
 import './login.css'
 
 const Login = () => {
@@ -17,14 +18,14 @@ const Login = () => {
     const schema = yup.object().shape({
         email: yup.string()
             .nullable()
-            .required(isRequired)
-            .email('Email must be a valid email'),
+            .email('Email must be a valid email')
+            .required(isRequired),
         password: yup.string()
             .nullable()
             .required(isRequired)
     })
 
-    const { register, control, handleSubmit } = useForm({
+    const { register, control, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema),
         defaultValue: { email: null, password: null },
         mode: 'all',
@@ -36,7 +37,6 @@ const Login = () => {
     }
 
     const findUser = (data) => {
-        console.log(listUsers);
         const user = listUsers?.find(item => {
             let dataUser = undefined
             if (item.email === data.email && item.password === data.password) return dataUser = item
@@ -46,7 +46,6 @@ const Login = () => {
     }
 
     const navigateToDashboard = (info) => {
-        console.log(info);
         if (info !== undefined) {
             dispatch({
                 type: 'USERS_SESSION',
@@ -54,6 +53,12 @@ const Login = () => {
                 isAuth: true
             })
             navigate("/dashboard/products")
+        } else {
+            dispatch({
+                type: 'SNACKBAR_APP',
+                openSnackbar: true,
+                message: "The user don't exist or your credentials aren't correct"
+            })
         }
 
     }
@@ -79,8 +84,11 @@ const Login = () => {
                                 type="email"
                                 fullWidth
                                 size="small"
-                            //error={errors.hasOwnProperty("points") && errors["points"].message}
+                                error={errors.hasOwnProperty("email") && errors["email"].message}
                             />
+                            <FormHelperText style={{ color: '#f44336' }}>
+                                {errors.hasOwnProperty("email") && errors["email"].message}
+                            </FormHelperText>
                         </Grid>
                         <Grid item xs={12} md={12} lg={12}>
                             <TextField
@@ -94,7 +102,11 @@ const Login = () => {
                                 type="password"
                                 fullWidth
                                 size="small"
+                                error={errors.hasOwnProperty("password") && errors["password"].message}
                             />
+                            <FormHelperText style={{ color: '#f44336' }}>
+                                {errors.hasOwnProperty("password") && errors["password"].message}
+                            </FormHelperText>
                         </Grid>
                         <Grid item xs={12} md={12} lg={12}>
                             <Button

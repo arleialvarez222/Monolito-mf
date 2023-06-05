@@ -1,4 +1,5 @@
-import { Button, Grid, TextField } from "@mui/material"
+/* eslint-disable no-prototype-builtins */
+import { Button, FormHelperText, Grid, TextField } from "@mui/material"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
@@ -29,7 +30,7 @@ const Register = () => {
             .required(isRequired)
     })
 
-    const { register, control, handleSubmit } = useForm({
+    const { register, control, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema),
         defaultValue: { email: null, password: null, name: null, lastName: null },
         mode: 'all',
@@ -70,8 +71,11 @@ const Register = () => {
                             type="text"
                             fullWidth
                             size="small"
-                        //error={errors.hasOwnProperty("points") && errors["points"].message}
+                            error={errors.hasOwnProperty("name") && errors["name"].message}
                         />
+                        <FormHelperText style={{ color: '#f44336' }}>
+                            {errors.hasOwnProperty("name") && errors["name"].message}
+                        </FormHelperText>
                     </Grid>
                     <Grid item xs={12} md={12} lg={12}>
                         <TextField
@@ -85,8 +89,11 @@ const Register = () => {
                             type="text"
                             fullWidth
                             size="small"
-                        //error={errors.hasOwnProperty("points") && errors["points"].message}
+                            error={errors.hasOwnProperty("lastName") && errors["lastName"].message}
                         />
+                        <FormHelperText style={{ color: '#f44336' }}>
+                            {errors.hasOwnProperty("lastName") && errors["lastName"].message}
+                        </FormHelperText>
                     </Grid>
                     <Grid item xs={12} md={12} lg={12}>
                         <TextField
@@ -100,8 +107,11 @@ const Register = () => {
                             type="email"
                             fullWidth
                             size="small"
-                        //error={errors.hasOwnProperty("points") && errors["points"].message}
+                            error={errors.hasOwnProperty("email") && errors["email"].message}
                         />
+                        <FormHelperText style={{ color: '#f44336' }}>
+                            {errors.hasOwnProperty("email") && errors["email"].message}
+                        </FormHelperText>
                     </Grid>
                     <Grid item xs={12} md={12} lg={12}>
                         <TextField
@@ -115,7 +125,11 @@ const Register = () => {
                             type="password"
                             fullWidth
                             size="small"
+                            error={errors.hasOwnProperty("password") && errors["password"].message}
                         />
+                        <FormHelperText style={{ color: '#f44336' }}>
+                            {errors.hasOwnProperty("password") && errors["password"].message}
+                        </FormHelperText>
                     </Grid>
                     <Grid item xs={12} md={12} lg={12}>
                         <Button
