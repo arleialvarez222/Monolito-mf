@@ -27,42 +27,42 @@ const RouterApp = () => {
 
                         <Route path='/dashboard/products'
                             element={
-                                <PrivateRoute>
+                                <PrivateRoute isLogged={state}>
                                     <Products />
                                 </PrivateRoute>
                             }
                         />
                         <Route path='/dashboard/credits'
                             element={
-                                <PrivateRoute>
+                                <PrivateRoute isLogged={state}>
                                     <Credits />
                                 </PrivateRoute>
                             }
                         />
                         <Route path='/dashboard/customers'
                             element={
-                                <PrivateRoute>
+                                <PrivateRoute isLogged={state}>
                                     <Customers />
                                 </PrivateRoute>
                             }
                         />
                         <Route path='/dashboard/inventories'
                             element={
-                                <PrivateRoute>
+                                <PrivateRoute isLogged={state}>
                                     <Inventories />
                                 </PrivateRoute>
                             }
                         />
                         <Route path='/dashboard/invoices'
                             element={
-                                <PrivateRoute>
+                                <PrivateRoute isLogged={state}>
                                     <Invoices />
                                 </PrivateRoute>
                             }
                         />
                         <Route path='/dashboard/suppliers'
                             element={
-                                <PrivateRoute>
+                                <PrivateRoute isLogged={state}>
                                     <Suppliers />
                                 </PrivateRoute>
                             }

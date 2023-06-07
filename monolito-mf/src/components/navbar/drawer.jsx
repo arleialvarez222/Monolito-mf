@@ -13,11 +13,11 @@ const DrawerApp = ({ openDrawer, closedrawer }) => {
                 anchor="left"
                 sx={{
                     width: 230,
-                    backgroundColor: "#F0F4F7",
+                    backgroundColor: "#fff",
                     flexShrink: 0,
                     "& .MuiDrawer-paper": {
                         width: 230,
-                        background: "#F0F4F7",
+                        background: "#fff",
                         padding: "15px 15px 15px 15px",
                         boxSizing: "border-box",
                         border: "none",
@@ -31,6 +31,7 @@ const DrawerApp = ({ openDrawer, closedrawer }) => {
                             component={Link}
                             to="/dashboard/products"
                             onClick={closedrawer}
+                            className="listItem"
                         >
                             <ListItemText
                                 primary="Products"
@@ -42,6 +43,7 @@ const DrawerApp = ({ openDrawer, closedrawer }) => {
                             component={Link}
                             to="/dashboard/credits"
                             onClick={closedrawer}
+                            className="listItem"
                         >
                             <ListItemText
                                 primary="Credits"
@@ -53,6 +55,7 @@ const DrawerApp = ({ openDrawer, closedrawer }) => {
                             component={Link}
                             to="/dashboard/customers"
                             onClick={closedrawer}
+                            className="listItem"
                         >
                             <ListItemText
                                 primary="Customers"
@@ -64,6 +67,7 @@ const DrawerApp = ({ openDrawer, closedrawer }) => {
                             component={Link}
                             to="/dashboard/inventories"
                             onClick={closedrawer}
+                            className="listItem"
                         >
                             <ListItemText
                                 primary="Inventories"
@@ -75,6 +79,7 @@ const DrawerApp = ({ openDrawer, closedrawer }) => {
                             component={Link}
                             to="/dashboard/invoices"
                             onClick={closedrawer}
+                            className="listItem"
                         >
                             <ListItemText
                                 primary="Invoices"
@@ -86,6 +91,7 @@ const DrawerApp = ({ openDrawer, closedrawer }) => {
                             component={Link}
                             to="/dashboard/suppliers"
                             onClick={closedrawer}
+                            className="listItem"
                         >
                             <ListItemText
                                 primary="Suppliers"
