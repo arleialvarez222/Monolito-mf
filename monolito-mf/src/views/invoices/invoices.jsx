@@ -1,8 +1,10 @@
-
+import '../../App.css'
 
 const Invoices = () => {
     return (
-        <div>Invoices</div>
+        <div>
+            <h2 className="title-main">Invoices</h2>
+        </div>
     )
 }
 
